@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+import LandingPage from '@/pages/landing-page'
+import GettingStarted from '@/pages/getting-started'
+import RestoreBackup from '@/pages/restore-backup'
+
 Vue.use(Router)
 
 export default new Router({
@@ -8,7 +12,15 @@ export default new Router({
     {
       path: '/',
       name: 'landing-page',
-      component: require('@/components/LandingPage').default
+      component: LandingPage
+    },
+    {
+      path: '/getting-started',
+      component: GettingStarted
+    },
+    {
+      path: '/restore-backup',
+      component: RestoreBackup
     },
     {
       path: '*',
