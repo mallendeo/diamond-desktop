@@ -16,6 +16,14 @@
           />
         </g>
       </svg>
+
+      <button
+        @click="$emit('btnclick')"
+        class="btn btn--to-bottom"
+        v-if="showCloseBtn"
+      >
+        {{ $t('ui.goBack') }}
+      </button>
     </div>
   </transition>
 </template>
@@ -27,27 +35,29 @@ export default {
   data () {
     return {
       anim: null,
-      tweens: null,
       colors: [
         '#ffe66d',
         '#ff6b6b',
-        '#f7fff7',
+        '#69306D',
         '#4ecdc4',
         '#1a535c'
       ]
     }
   },
+  props: {
+    showCloseBtn: { type: Boolean, default: true }
+  },
   mounted () {
     const paths = this.$el.querySelectorAll('.loading__stroke')
     const pathStylers = Array.from(paths).map(styler)
 
-    this.tweens = [...paths].map(p => tween({
+    const tweens = [...paths].map(p => tween({
       loop: Infinity,
       duration: 1000,
-      ease: easing.linear
+      ease: easing.easeInOut
     }))
 
-    this.anim = stagger(this.tweens, 80)
+    this.anim = stagger(tweens, 80)
       .start(values => values.forEach((v = 0, i) =>
         pathStylers[i].set({
           pathLength: v * 100,
@@ -58,14 +68,14 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 .loading-wrapper {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
+  -webkit-app-region: drag;  
+  position: absolute;
+  width: 100%; height: 100%;
   top: 0; left: 0;
   display: flex;
-  background: #f0f0f0;
+  background: var(--float-panel-bg);
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -83,5 +93,9 @@ svg.loading {
 
 .loading__stroke {
   stroke-width: .125rem;
+}
+
+.btn {
+  opacity: .5;
 }
 </style>

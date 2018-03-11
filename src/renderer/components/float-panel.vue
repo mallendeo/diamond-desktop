@@ -1,7 +1,9 @@
 <template>
-  <div class="float-panel">
-    <slot />
-  </div>
+  <transition name="slide-in">
+    <div class="float-panel">
+      <slot />
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -18,14 +20,27 @@ export default {
   flex-direction: column;
   height: 100vh; width: 100vw;
   position: fixed;
-  top: 0;
-  left: 0;
-  background: var(--sidebar-bg);
-  animation: slide-in .2s ease both;
+  top: 0; left: 0; 
+  z-index: 10;
+  background: var(--float-panel-bg);
+
+  overflow: hidden;
+
+  &--over {
+    $margin: 3rem;
+    height: calc(100vh - #{$margin + 1.5rem}); width: calc(100vw - #{$margin});
+    border-radius: .25rem;
+    margin: $margin auto auto auto;
+    bottom: 0; right: 0;
+  }
 }
 
-@keyframes slide-in {
-  from { opacity: 0; transform: translateY(20%); }
-  to { opacity: 1; transform: translateY(0%); }
+.slide-in-enter-active, .slide-in-leave-active {
+  transition: all .2s ease;
+}
+
+.slide-in-enter, .slide-in-leave-to {
+  opacity: 0;
+  transform: translateY(20%);
 }
 </style>

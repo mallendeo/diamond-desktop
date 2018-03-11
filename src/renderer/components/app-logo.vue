@@ -5,7 +5,7 @@
     :class="{
       'logo--fill': logoStyle === 'fill',
       'logo--outline': logoStyle === 'outline',
-      'logo--white': logoStyle === 'white',
+      'logo--white': logoStyle === 'white'
     }"
   >
     <defs>
@@ -54,14 +54,14 @@ export default {
   
   &--outline {
     .inner {
-      stroke-width: .125rem;
-      stroke: #fff;
+      stroke-width: var(--logo-stroke-width, .125rem);
+      stroke: var(--logo-stroke, #fff);
     }
   }
 
   &--white {
     .inner { fill: white; }
-    .reflection { fill: var(--fill, white); }
+    .reflection { fill: var(--logo-fill, white); }
   }
 }
 </style>

@@ -1,34 +1,78 @@
 .btn {
-  border:  1px solid transparentize($c-stormcloud, 0.8);
   transition: all .1s ease;
-  color: $c-stormcloud;
+  color: var(--btn-text-color);
   font-size: .8rem;
   padding: 1rem;
   flex: 1;
   margin: 1px 0;
   text-align: center;
-  border-radius: .25rem;
-
+  
   &:hover {
-    border-color: $c-stormcloud;
-    color: $c-dark-stormcloud;
+    color: var(--btn-text-color-hover, $c-dark-stormcloud);
   }
-
-  &:focus {
-    outline: 1px solid $c-stormcloud;
-  }
-
-  &:active {
-    background: $c-dark-stormcloud;
-  }
-
+  
+  &:focus { outline: 1px solid var(--btn-border-color-focus) }
+  &:active { background: var(--btn-color); }
+  
   &-group {
     display: flex;
     margin-top: 1rem;
+    transition: background .2s ease;
+  }
+  
+  &--border {
+    border-radius: .25rem;
+    border: 1px solid var(--btn-border-color);
+
+    &:hover {
+      border-color: var(--btn-border-color-hover);
+    }
   }
 
   &--light {
     background: transparent;
     text-decoration: underline;
+  }
+
+  &--to-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+}
+
+.btn-group--nav {
+  margin-top: auto;
+  flex-direction: column;
+  background: var(--btn-group-bg);
+
+  .btn {
+    text-decoration: none;
+    flex: 1;
+    margin: 0;
+    border-radius: 0;
+    font-size: 1rem;
+    padding: 2rem;
+    color: var(--text-color);
+    border: none;
+    
+    &:last-child {
+      &:hover {
+        background: $c-purple;
+      }
+    }
+
+    &:hover {
+      background: $c-purple;
+      color: white;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      background: $c-dark-gray;
+    }
   }
 }

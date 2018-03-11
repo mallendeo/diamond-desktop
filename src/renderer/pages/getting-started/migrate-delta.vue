@@ -1,6 +1,10 @@
 <template>
   <float-panel class="panel">
-    <app-loading v-if="loading" />
+    <app-loading
+      v-if="loading"
+      :show-close-btn="true"
+      @btnclick="toggleDelta"
+    />
 
     <template v-if="!loading">
       <template v-if="!synced">
@@ -14,14 +18,19 @@
 
         <qrcode
           class="qr-code"
+          :class="{ 'qr-code--border': darkTheme }"
           :value="syncToken.token"
           v-if="syncToken && !synced"
-          :options="{ size: 200 }"
+          :options="{
+            size: 200,
+            foreground: 'hsla(222, 24%, 20%, 1)', // $c-darker-stormcloud
+            background: darkTheme ? '#fff' : 'transparent'
+          }"
         ></qrcode>
 
-        <span class="content__msg">
+        <!-- <span class="content__msg">
           Waiting for you to scan the QR code. {{ secToExpire }} seconds remaining.
-        </span>
+        </span> -->
       </template>
       
       <template v-if="synced">
@@ -39,6 +48,8 @@
           </li>
         </ul>
       </template>
+
+      <button class="btn btn--to-bottom" @click="toggleDelta">{{ $t('ui.goBack') }}</button>
     </template>
   </float-panel>
 </template>
@@ -84,6 +95,8 @@ export default {
       'getOverviews'
     ]),
 
+    ...mapActions('home', ['toggleDelta']),
+
     async syncData () {
       await this.getSyncToken()
       this.loading = false
@@ -115,6 +128,10 @@ export default {
 
   computed: {
     ...mapState('delta', ['syncToken', 'syncStatus', 'portfolio', 'overviews']),
+    ...mapState('settings', {
+      darkTheme: state => state.theme === 'dark'
+    }),
+
     transactions () {
       if (!this.portfolio) return []
 
@@ -122,6 +139,7 @@ export default {
       const flatArr = flatten(Object.keys(txs).map(coin => txs[coin]))
       return sortBy(flatArr, ['datetime'])
     },
+
     synced () {
       return this.syncStatus === 'ENDED'
     }
@@ -143,9 +161,9 @@ export default {
 @import '../../assets/scss/globals';
 
 .float-panel {
-  --sidebar-bg: $c-darker-stormcloud;
+  --sidebar-bg: #f0f0f0;
   --loading-bg: $c-darker-stormcloud;
-  color: white;
+  color: var(--text-color);
   align-items: center;
 }
 
@@ -154,12 +172,15 @@ export default {
 }
 
 .qr-code {
-  border-radius: .5rem;
-  padding: .25rem;
-  background: white;
   margin: auto;
+  margin-top: 4rem;
 
-  border: 1px solid rgba(0,0,0,.1);
+  &--border {
+    padding: .25rem;
+    border-radius: .5rem;
+    background: white;
+    border: 1px solid rgba(0,0,0,.1);
+  }
 }
 
 .list {
@@ -167,19 +188,14 @@ export default {
   font-size: .8rem;
 
   &__item {
-    line-height: 1.5;
+    line-height: 2;
   }
 
   &__checkbox {
     flex: 1;
     padding: 1rem 2rem;
-    color: $c-gray;
+    color: var(--text-color-light);
     align-items: center;
-
-    /deep/ .el-checkbox__label {
-      display: flex;
-      flex: 1;
-    }
   }
 
   &--wide {
@@ -209,7 +225,6 @@ export default {
 .title {
   margin: 2.75rem auto;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
-
 </style>

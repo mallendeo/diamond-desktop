@@ -1,16 +1,22 @@
 <template>
-  <section>
+  <app-card class="card">
     <router-link to="/">Home</router-link>
     <h1>Restore</h1>
-  </section>
+  </app-card>
 </template>
 
 <script>
-export default {
+import AppCard from '@/components/app-card'
 
+export default {
+  components: {
+    AppCard
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.card {
+  padding-top: 2.7rem;
+}
 </style>

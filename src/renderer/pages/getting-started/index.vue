@@ -1,28 +1,35 @@
 <template>
   <app-card>
     <div class="content">
-      <router-link to="/">Home</router-link>
-      <h1>Getting started</h1>
-      <p class="m-top-1">
-        Welcome to <strong>Diamond</strong>.
-      </p>
+      <h1>
+        <router-link to="/">Home</router-link>
+        <span> / Getting started</span>
+      </h1>
 
-      <p>
-        If you have <strong>Delta</strong> or <strong>Blockfolio</strong>,
-        you can import all your portfolios using the migration tool.
-      </p>
+      <p class="m-top-1" v-html="$t('init.welcome')"></p>
+      <p v-html="$t('init.gettingStarted')"></p>
+    </div>
 
-      <button class="btn m-top-1" @click="showDelta = !showDelta">Import from Delta</button>
-      <button class="btn" @click="showBf = !showBf">Import from Blockfolio</button>
+    <div class="btn-group btn-group--nav flex">
+      <button class="btn" @click="toggleDelta">
+        {{ $t('init.importFrom') }} Delta
+      </button>
+      <button class="btn" @click="toggleBlockfolio">
+        {{ $t('init.importFrom') }} Blockfolio
+      </button>
+      <button class="btn" @click="() => {}">
+        {{ $t('init.fromScratch') }}
+      </button>
     </div>
 
     <migrate-delta v-if="showDelta" />
-
-    <migrate-blockfolio v-if="showBf" />
+    <migrate-blockfolio v-if="showBlockfolio" />
   </app-card>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 import MigrateBlockfolio from './migrate-blockfolio'
 import MigrateDelta from './migrate-delta'
 import AppCard from '@/components/app-card'
@@ -33,12 +40,8 @@ export default {
     MigrateDelta,
     AppCard
   },
-  data () {
-    return {
-      showBf: false,
-      showDelta: false
-    }
-  }
+  computed: mapState('home', ['showDelta', 'showBlockfolio']),
+  methods: mapActions('home', ['toggleDelta', 'toggleBlockfolio'])
 }
 </script>
 
@@ -47,17 +50,25 @@ export default {
 
 .content {
   transition: all .2s ease;
+  padding: 2rem;
+  color: var(--text-color-opaque);
 }
 
 h1 {
-  font-family: 'Comfortaa';
-}
-
-p {
-  color: #444;
-}
-
-.m-top-1 {
+  font-size: 1rem;
+  line-height: 1rem;
+  display: flex;
   margin-top: 1rem;
+
+  span {
+    color: var(--text-color);
+  }
+
+  a {
+    color: var(--text-color-opaque);
+    text-decoration: none;
+    font-weight: 200;
+    margin-right: .5rem;
+  }
 }
 </style>

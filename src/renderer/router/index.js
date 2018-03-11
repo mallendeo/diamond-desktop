@@ -15,10 +15,12 @@ export default new Router({
       component: LandingPage
     },
     {
+      name: 'getting-started',
       path: '/getting-started',
       component: GettingStarted
     },
     {
+      name: 'restore-backup',
       path: '/restore-backup',
       component: RestoreBackup
     },

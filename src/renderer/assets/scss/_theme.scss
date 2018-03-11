@@ -1,8 +1,8 @@
 $c-stormcloud: #4F5B69;
 $c-light-stormcloud: lighten($c-stormcloud, 4);
-$c-dark-stormcloud: darken($c-stormcloud, 4);
+$c-dark-stormcloud: hsla(220, 24%, 25%, 1);
 $c-darker-stormcloud: hsla(220, 24%, 20%, 1);
-$c-darkest-stormcloud: hsla(222, 24%, 15%, 1);
+$c-darkest-stormcloud: hsla(222, 24%, 18%, 1);
 
 $c-purple: #8a49ea;
 $c-light-purple: lighten($c-purple, 4);
@@ -16,3 +16,58 @@ $c-darker-gray: darken($c-gray, 8);
 
 $c-text: $c-stormcloud;
 $c-action-btn: $c-purple;
+
+$c-almost-white: #f0f0f0;
+$c-white: #f7f7f7;
+
+:root {
+  // color
+  --c-stormcloud: $c-stormcloud;
+  --c-dark-stormcloud: $c-dark-stormcloud;
+  --c-darker-stormcloud: $c-darker-stormcloud;
+  --c-darkest-stormcloud: $c-darkest-stormcloud;
+  --c-almost-white: $c-almost-white;
+  --c-white: $c-white;
+  
+  // button
+  --btn-bg: $c-purple;
+  --btn-text-color: var(--c-stormcloud);
+  --btn-text-color-hover: var(--c-dark-stormcloud);
+  --btn-border-color-focus: var(--c-stormcloud);
+  --btn-color: var(--c-dark-stormcloud);
+  --btn-border-color: transparentize($c-stormcloud, 0.8);
+  --btn-border-color-hover: var(--c-stormcloud);
+}
+
+.theme--light {
+  --app-bg: $c-almost-white;
+  --logo-stroke: #212121;
+
+  --color-active: $c-purple;
+  --color-inactive: $c-gray;
+
+  --text-color: #212121;
+  --text-color-opaque: #424242;
+  --text-color-light: #616161;
+
+  --float-panel-bg: var(--c-white);
+  --btn-group-bg: var(--c-white);
+}
+
+.theme--dark {
+  --app-bg: var(--c-darkest-stormcloud);
+  --logo-stroke: var(--c-almost-white);
+
+  --text-color: #FAFAFA;
+  --text-color-opaque: #F5F5F5;
+  --text-color-light: #EEEEEE;
+  
+  --float-panel-bg: var(--c-dark-stormcloud);
+
+  --btn-text-color: var(--c-almost-white);
+  --btn-text-color-hover: white;
+  --btn-border-color-focus: transparent;
+  --btn-border-color: transparent;
+
+  --btn-group-bg: var(--c-darker-stormcloud);
+}
