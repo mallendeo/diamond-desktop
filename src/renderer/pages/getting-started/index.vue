@@ -2,15 +2,16 @@
   <app-card>
     <div class="content">
       <h1>
-        <router-link to="/">Home</router-link>
-        <span> / Getting started</span>
+        <router-link to="/">{{ $t('init.home') }}</router-link>
+        <span> / {{ $t('init.title') }}</span>
       </h1>
 
-      <p class="m-top-1" v-html="$t('init.welcome')"></p>
-      <p v-html="$t('init.gettingStarted')"></p>
+      <p class="mt-4" v-html="$t('init.welcome')"></p>
+      <p class="mt-4 fs-7" v-html="$t('init.gettingStarted')"></p>
+      <p class="mt-2 fs-7" v-html="$t('init.info')"></p>
     </div>
 
-    <div class="btn-group btn-group--nav flex">
+    <div class="btn-group btn-group--nav">
       <button class="btn" @click="toggleDelta">
         {{ $t('init.importFrom') }} Delta
       </button>
@@ -18,7 +19,7 @@
         {{ $t('init.importFrom') }} Blockfolio
       </button>
       <button class="btn" @click="() => {}">
-        {{ $t('init.fromScratch') }}
+        {{ $t('init.create') }}
       </button>
     </div>
 

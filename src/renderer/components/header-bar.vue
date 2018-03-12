@@ -45,7 +45,7 @@ export default {
   data () {
     return {
       l: true,
-      t: true
+      t: false
     }
   },
   computed: {
