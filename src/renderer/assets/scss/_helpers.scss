@@ -11,3 +11,27 @@
     justify-content: space-between;
   }
 }
+
+// Layout helpers
+//----------------------
+
+// -- margin
+@for $i from 1 through 12 {
+  .m-#{$i} { margin: #{$i / 2}rem; }
+  .mt-#{$i} { margin-top: #{$i / 2}rem; }
+  .mr-#{$i} { margin-right: #{$i / 2}rem; }
+  .mb-#{$i} { margin-bottom: #{$i / 2}rem; }
+  .ml-#{$i} { margin-left: #{$i / 2}rem; }
+}
+
+// -- font
+$currSize: 3;
+@for $i from 1 through 7 {
+  @if $i < 4 {
+    .fs-#{$i} { font-size: #{$currSize}rem; }
+    $currSize: $currSize - 0.5;
+  } @else {
+    .fs-#{$i} { font-size: #{$currSize}rem; }
+    $currSize: $currSize - 0.25;
+  }
+}

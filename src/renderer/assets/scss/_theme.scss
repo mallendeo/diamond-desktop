@@ -1,3 +1,4 @@
+// color
 $c-stormcloud: #4F5B69;
 $c-light-stormcloud: lighten($c-stormcloud, 4);
 $c-dark-stormcloud: hsla(220, 24%, 25%, 1);
@@ -21,11 +22,21 @@ $c-almost-white: #f0f0f0;
 $c-white: #f7f7f7;
 
 :root {
-  // color
   --c-stormcloud: $c-stormcloud;
+  --c-light-stormcloud: $c-light-stormcloud;
   --c-dark-stormcloud: $c-dark-stormcloud;
   --c-darker-stormcloud: $c-darker-stormcloud;
   --c-darkest-stormcloud: $c-darkest-stormcloud;
+  --c-purple: $c-purple;
+  --c-light-purple: $c-light-purple;
+  --c-dark-purple: $c-dark-purple;
+  --c-darker-purple: $c-darker-purple;
+  --c-gray: $c-gray;
+  --c-light-gray: $c-light-gray;
+  --c-dark-gray: $c-dark-gray;
+  --c-darker-gray: $c-darker-gray;
+  --c-text: $c-text;
+  --c-action-btn: $c-action-btn;
   --c-almost-white: $c-almost-white;
   --c-white: $c-white;
   
@@ -40,7 +51,7 @@ $c-white: #f7f7f7;
 }
 
 .theme--light {
-  --app-bg: $c-almost-white;
+  --app-bg: $c-white;
   --logo-stroke: #212121;
 
   --color-active: $c-purple;
@@ -51,7 +62,7 @@ $c-white: #f7f7f7;
   --text-color-light: #616161;
 
   --float-panel-bg: var(--c-white);
-  --btn-group-bg: var(--c-white);
+  --btn-group-bg: var(--c-almost-white);
 }
 
 .theme--dark {

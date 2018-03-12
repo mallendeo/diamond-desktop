@@ -1,7 +1,7 @@
 .btn {
   transition: all .1s ease;
   color: var(--btn-text-color);
-  font-size: .8rem;
+  font-size: inherit;
   padding: 1rem;
   flex: 1;
   margin: 1px 0;
@@ -51,7 +51,6 @@
     flex: 1;
     margin: 0;
     border-radius: 0;
-    font-size: 1rem;
     padding: 2rem;
     color: var(--text-color);
     border: none;
