@@ -59,7 +59,6 @@
     "@xkeshi/vue-qrcode": "^0.3.0",
     "axios": "^0.16.1",
     "ccxt": "^1.10.1189",
-    "element-ui": "^2.2.0",
     "luxon": "^0.5.3",
     "popmotion": "^8.1.11",
     "uuid": "^3.2.1",
