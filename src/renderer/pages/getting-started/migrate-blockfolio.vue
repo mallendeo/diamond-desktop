@@ -1,27 +1,27 @@
 <template>
-  <float-panel class="panel">
-    <h1>Migrate from Blockfolio</h1>
+  <float-panel center>
     <app-loading
       v-if="loading"
       :show-close-btn="true"
       @btnclick="toggleBlockfolio"
     />
 
+    <h1 class="title mt-5 mb-5 fs-5">{{ $t('blockfolio.title') }}</h1>
     <ol type="1" class="list list--ordered fs-7">
       <li class="list__item" v-html="$t('blockfolio.step1')" />
       <li class="list__item" v-html="$t('blockfolio.step2')" />
-      <li class="list__item" v-html="$t('blockfolio.step3', { code: 384752 })" />
+      <li class="list__item" v-html="$t('blockfolio.step3', { code: 384752 })" /><!-- FIX ME! -->
       <li class="list__item" v-html="$t('blockfolio.step4')" />
     </ol>
 
-    <div class="form-group">
+    <div :class="{ 'v-hidden': !showInput }" class="form-group">
       <input
         placeholder="Paste your Blockfolio token"
         class="form-control"
         v-model="newToken"
         type="text"
       >
-      <button class="action-btn">
+      <button class="action-btn" @click="() => getPortfolio()">
         <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
           <path d="M0 0h24v24H0z" fill="none"/>
           <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
@@ -29,10 +29,17 @@
       </button>
     </div>
 
-    <button @click="() => getPortfolio()">get</button>
-    <!--<pre>{{ token }}</pre>
-    <pre>{{ portfolio }}</pre>-->
-    <button class="btn btn--to-bottom" @click="toggleBlockfolio">{{ $t('ui.goBack') }}</button>
+    <span
+      :class="{ 'v-hidden': showInput }"
+      class="bottom-action mb-8 fs-7"
+      @click="showInput = true"
+    >
+      {{ $t('blockfolio.paste') }}
+    </span>
+
+    <button class="btn btn--to-bottom fs-7" @click="toggleBlockfolio">
+      {{ $t('ui.goBack') }}
+    </button>
   </float-panel>
 </template>
 
@@ -50,7 +57,8 @@ export default {
   data () {
     return {
       newToken: null,
-      loading: false
+      loading: false,
+      showInput: false
     }
   },
   computed: {
@@ -69,54 +77,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.form-control {
-  padding: .75rem 2rem;
-  background: var(--c-stormcloud);
-  border-radius: .25rem;
-  width: 14rem;
-  border: none;
-  color: white;
-  font-size: .75rem;
+.float-panel { color: var(--text-color-light); }
 
-  transition: all .2s ease;
-  z-index: 1;
+.bottom-action { cursor: pointer; }
 
-  &:not(:placeholder-shown), &:focus {
-    outline: none;
-    background: var(--c-light-stormcloud);
-    padding: .75rem 1rem;
+.btn-group {
+  align-self: stretch;
 
-    + .action-btn {
-      opacity: 1;
-      margin-left: .5rem;
-    }
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
   }
 
-  + .action-btn {
-    opacity: 0;
-    margin-left: -2rem;
-    transition: all .2s ease;
-    z-index: 0;
-  }
-
-  &::placeholder {
-    color: #8699A3;
+  svg {
+    margin-right: .5rem;
   }
 }
 
-.form-group {
-  display: flex;
-  position: relative;
-  margin: auto;
-  align-items: center;
-}
-
-.action-btn {
-  cursor: pointer;
-  width: 2rem; height: 2rem;
+.list /deep/ .link {
+  display: inline-block;
   background: var(--c-purple);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
+  padding: 0 .4rem;
+  margin-left: .25rem;
+  border-radius: .25rem;
 }
 </style>
