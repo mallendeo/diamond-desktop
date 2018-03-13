@@ -36,9 +36,12 @@ export default {
   },
 
   blockfolio: {
+    title: 'Migrate from Blockfolio',
+    paste: 'You can also paste your Blockfolio token.',
+
     step1: 'On Blockfolio, go to "Settings".',
-    step2: 'Scroll to the very bottom and tap on "Token".',
-    step3: 'Open your browser on your phone and go to getdiamond.io/{code}',
+    step2: 'Scroll to the bottom and tap on "Token".',
+    step3: 'On your phone go to <span class="link">getdiamond.io/<strong>{code}</strong></span>',
     step4: 'Your portfolio will appear here.'
   }
 }
