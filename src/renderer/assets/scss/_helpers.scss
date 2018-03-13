@@ -35,3 +35,8 @@ $currSize: 3;
     $currSize: $currSize - 0.25;
   }
 }
+
+.v-hidden {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,53 @@
+.form-control {
+  padding: .75rem 2rem;
+  background: var(--fc-bg, var(--c-dark-stormcloud));
+  border-radius: .25rem;
+  width: 14rem;
+  border: none;
+  color: var(--fc-color, --c-white);
+  font-size: .75rem;
+
+  transition: all .2s ease;
+  z-index: 1;
+
+  &:not(:placeholder-shown), &:focus {
+    outline: none;
+    background: var(--fc-focus-bg, var(--c-stormcloud));
+    padding: .75rem 1rem;
+
+    + .action-btn {
+      opacity: 1;
+      margin-left: .5rem;
+    }
+  }
+
+  + .action-btn {
+    opacity: 0;
+    margin-left: -2rem;
+    transition: all .2s ease;
+    z-index: 0;
+  }
+
+  &::placeholder {
+    color: var(--fc-placeholder-color, #8699A3);
+  }
+}
+
+.form-group {
+  display: flex;
+  position: relative;
+  margin: auto;
+  align-items: center;
+
+  transition: all .2s ease;
+}
+
+.action-btn {
+  cursor: pointer;
+  width: 2rem; height: 2rem;
+  background: var(--action-btn-bg, var(--c-purple));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  outline: none;
+}

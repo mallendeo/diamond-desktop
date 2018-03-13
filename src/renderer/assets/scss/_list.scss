@@ -1,0 +1,29 @@
+.list {
+  $scope: &;
+  
+  &--ordered {
+    padding-left: 1rem;
+
+    #{$scope}__item {
+      line-height: 2;
+    }
+  }
+
+  &--simple {
+    width: 100%;
+    
+    #{$scope}__item {
+      display: flex;
+      align-items: center;
+      padding: .5rem 1.5rem;
+      line-height: 2.7;
+      color: var(--text-color-light);
+      opacity: .5;
+      transition: opacity .2s ease;
+
+      &--active {
+        opacity: 1;
+      }
+    }
+  }
+}
