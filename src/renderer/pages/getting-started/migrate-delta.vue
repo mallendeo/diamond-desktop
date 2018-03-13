@@ -1,5 +1,5 @@
 <template>
-  <float-panel class="panel">
+  <float-panel>
     <app-loading
       v-if="loading"
       :show-close-btn="true"
@@ -63,7 +63,7 @@
 
       <button
         v-if="!synced"
-        class="btn btn--to-bottom"
+        class="btn btn--to-bottom fs-7"
         @click="toggleDelta"
       >
         {{ $t('ui.goBack') }}
@@ -225,10 +225,7 @@ export default {
 @import '../../assets/scss/globals';
 
 .float-panel {
-  --sidebar-bg: #f0f0f0;
-  --loading-bg: $c-darker-stormcloud;
   color: var(--text-color-light);
-  align-items: center;
 }
 
 .content__msg { opacity: .5; }
@@ -261,34 +258,6 @@ export default {
     border-radius: .5rem;
     background: white;
     border: 1px solid rgba(0,0,0,.1);
-  }
-}
-
-.list {
-  $scope: &;
-
-  &--ordered {
-    #{$scope}__item {
-      line-height: 2;
-    }
-  }
-
-  &--simple {
-    width: 100%;
-    
-    #{$scope}__item {
-      display: flex;
-      align-items: center;
-      padding: .5rem 1.5rem;
-      line-height: 2.7;
-      color: var(--text-color-light);
-      opacity: .5;
-      transition: opacity .2s ease;
-
-      &--active {
-        opacity: 1;
-      }
-    }
   }
 }
 

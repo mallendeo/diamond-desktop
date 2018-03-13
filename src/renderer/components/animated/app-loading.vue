@@ -19,7 +19,7 @@
 
       <button
         @click="$emit('btnclick')"
-        class="btn btn--to-bottom"
+        class="btn btn--to-bottom fs-7"
         v-if="showCloseBtn"
       >
         {{ $t('ui.goBack') }}
