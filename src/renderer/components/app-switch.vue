@@ -1,6 +1,6 @@
 <template>
   <label class="switch">
-    <input class="switch__input" type="checkbox" :name="name" v-model="cb">
+    <input @click="onChange" class="switch__input" type="checkbox" :name="name" :checked="val">
     <div class="icon icon--on">
       <slot name="icon-on" />
     </div>
@@ -14,16 +14,12 @@
 <script>
 export default {
   props: {
-    name: { type: String }
+    name: { type: String },
+    val: { type: Boolean }
   },
-  data () {
-    return {
-      cb: false
-    }
-  },
-  watch: {
-    cb (val) {
-      this.$emit('onChange', val)
+  methods: {
+    onChange () {
+      this.$emit('onChange')
     }
   }
 }
