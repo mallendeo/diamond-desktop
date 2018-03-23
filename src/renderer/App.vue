@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="wrapper" :class="{
+  <div id="app" v-show="dbLoaded" class="wrapper" :class="{
     'theme--dark': theme === 'dark',
     'theme--light': theme === 'light'
   }">
@@ -11,13 +11,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import HeaderBar from '@/components/header-bar'
 
 export default {
   name: 'diamond-desktop',
   components: { HeaderBar },
-  computed: mapGetters('settings', ['theme'])
+  computed: mapState('settings', ['dbLoaded', 'theme']),
+  methods: {
+    ...mapActions('settings', ['loadSettings'])
+  },
+  mounted () {
+    this.loadSettings()
+  }
 }
 </script>
 
@@ -43,15 +49,21 @@ export default {
   flex-direction: column;
   align-items: center;
   height: 100vh; width: 100vw;
-  transition: background .2s ease;
+  padding-top: 2.75rem;
   background: var(--app-bg);
 
-  padding-top: 2.75rem;
+  transition: background .2s ease;
+  animation: fade-in .5s ease both;
 }
 
 .view-wrapper {
   position: absolute;
   top: 0;left: 0;
   width: 100%; height: 100%;
+}
+
+@keyframes fade-in {
+  from { opacity: 0 }
+  to { opacity: 1 }
 }
 </style>

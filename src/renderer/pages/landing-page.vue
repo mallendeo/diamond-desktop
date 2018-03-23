@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState } from 'vuex'
 
 import AppCard from '@/components/app-card'
 import AppLogo from '@/components/app-logo'
 import FloatPanel from '@/components/float-panel'
 
 export default {
-  computed: mapGetters('settings', ['theme']),
+  computed: mapState('settings', ['theme']),
   components: { AppCard, AppLogo, FloatPanel },
   methods: {
     open (link) {

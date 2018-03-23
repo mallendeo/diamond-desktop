@@ -1,6 +1,6 @@
 <template>
   <header class="header-bar">
-    <app-switch @onChange="changeLang" :title="lang" name="lang">
+    <app-switch @onChange="changeLang" :val="lang !== 'en'" :title="lang" name="lang">
       <div class="icon" slot="icon-off">
         <span>EN</span>
       </div>
@@ -35,34 +35,27 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 import AppToggle from './app-toggle'
 import AppSwitch from './app-switch'
 import IconSunMoon from './icons/icon-sun-moon'
 
 export default {
   components: { AppToggle, AppSwitch, IconSunMoon },
-  data () {
-    return {
-      l: true,
-      t: false
-    }
-  },
   computed: {
-    ...mapGetters('settings', ['lang', 'theme'])
+    ...mapGetters('settings', ['lang']),
+    ...mapState('settings', ['theme'])
   },
   methods: {
     ...mapActions('settings', ['setLang', 'setTheme']),
 
     changeLang () {
-      this.l = !this.l
-      if (!this.l) return this.setLang('ES_CL')
+      if (this.lang !== 'es') return this.setLang('ES_CL')
       this.setLang('EN_US')
     },
 
     changeTheme () {
-      this.t = !this.t
-      if (!this.t) return this.setTheme('DARK')
+      if (this.theme !== 'dark') return this.setTheme('DARK')
       this.setTheme('LIGHT')
     }
   }
@@ -102,7 +95,7 @@ export default {
 
 .icon {
   transform-origin: center center;
-  transform: scale(.5);
+  transform: scale(.7);
   color: var(--text-color);
 }
 </style>

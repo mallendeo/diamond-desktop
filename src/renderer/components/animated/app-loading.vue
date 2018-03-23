@@ -2,7 +2,6 @@
   <transition name="fade">
     <div class="loading-wrapper">
       <svg
-        v-show="anim"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 45"
         class="loading"
       >
@@ -34,13 +33,12 @@ import { tween, styler, easing, stagger } from 'popmotion'
 export default {
   data () {
     return {
-      anim: null,
       colors: [
         '#ffe66d',
         '#ff6b6b',
         '#69306D',
         '#4ecdc4',
-        '#1a535c'
+        '#02c39a'
       ]
     }
   },
@@ -57,11 +55,14 @@ export default {
       ease: easing.easeInOut
     }))
 
-    this.anim = stagger(tweens, 80)
+    pathStylers.forEach(p => p.set({ pathLength: 0, pathOffset: 0, opacity: 0 }))
+
+    stagger(tweens, 80)
       .start(values => values.forEach((v = 0, i) =>
         pathStylers[i].set({
           pathLength: v * 100,
-          pathOffset: v * 100
+          pathOffset: v * 100,
+          opacity: 1
         })
       ))
   }
