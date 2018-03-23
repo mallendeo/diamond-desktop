@@ -1,11 +1,13 @@
 // color
 $c-stormcloud: #4F5B69;
 $c-light-stormcloud: lighten($c-stormcloud, 4);
-$c-dark-stormcloud: hsla(220, 24%, 25%, 1);
-$c-darker-stormcloud: hsla(220, 24%, 20%, 1);
-$c-darkest-stormcloud: hsla(222, 24%, 18%, 1);
+$c-dark-stormcloud: hsl(220, 24%, 25%);
+$c-darker-stormcloud: hsl(220, 24%, 20%);
+$c-darkest-stormcloud: hsl(222, 24%, 18%);
 
-$c-purple: #8a49ea;
+// $c-purple: hsl(264, 79%, 60%);
+$c-purple: hsl(258, 100%, 67%);
+
 $c-light-purple: lighten($c-purple, 4);
 $c-dark-purple: darken($c-purple, 4);
 $c-darker-purple: darken($c-purple, 8);
