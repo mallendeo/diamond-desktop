@@ -15,33 +15,36 @@ export default {
     home: 'Home',
     title: 'Getting started',
     gettingStarted:
-      `If you have <strong>Delta</strong> or <strong>Blockfolio</strong>,
+      `If you come from <strong>Delta</strong> or <strong>Blockfolio</strong>,
       you can import all your portfolios and transactions using the migration tool.`,
     importFrom: 'Import from',
     create: 'Create new portfolio',
-    info: 'Note: You can import as many Delta or Blockfolio accounts as you want.',
+    info: 'Note: You can import as many accounts as you want.',
 
     addAnother: 'Import more portfolios',
     done: 'Go to your dashboard'
   },
   delta: {
-    title: 'Migrate from Delta',
+    title: 'Import from Delta',
     defaultName: 'Main Portfolio',
     importing: 'Importing your portfolios',
 
-    step1: 'On Delta go to <strong>"Settings/Sync data"</strong>.',
-    step2: 'Select <strong>"Sync from this device"</strong>.',
-    step3: 'Confirm that you see the QR code below.',
-    step4: 'Scan the code.'
+    steps: [
+      'On Delta go to <strong>"Settings/Sync data"</strong>.',
+      'Select <strong>"Sync from this device"</strong>.',
+      'Scan the code.'
+    ]
   },
 
   blockfolio: {
-    title: 'Migrate from Blockfolio',
-    paste: 'You can also paste your Blockfolio token.',
+    title: 'Import from Blockfolio',
+    pastePlaceholder: 'Or paste the token here.',
 
-    step1: 'On Blockfolio, go to "Settings".',
-    step2: 'Scroll to the bottom and tap on "Token".',
-    step3: 'On your phone go to <span class="link">getdiamond.io/<strong>{code}</strong></span>',
-    step4: 'Your portfolio will appear here.'
+    steps: [
+      'On Blockfolio, go to <strong>"Settings"</strong>.',
+      'Scroll to the bottom and tap on <strong>"Token"</strong>.',
+      'On your phone go to <span class="link">getdiamond.io/<strong>{code}</strong></span>',
+      'Paste the token.'
+    ]
   }
 }

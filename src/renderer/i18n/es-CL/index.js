@@ -25,13 +25,25 @@ export default {
     done: 'Ir a tu dashboard'
   },
   delta: {
-    title: 'Migrar desde Delta',
+    title: 'Importar desde Delta',
     defaultName: 'Portafolio principal',
     importing: 'Importando tus portafolios',
 
-    step1: 'En Delta abre <strong>"Settings/Sync data"</strong>.',
-    step2: 'Selecciona <strong>"Sync from this device"</strong>.',
-    step3: 'Confirma que ves el código QR de abajo.',
-    step4: 'Escanea el código.'
+    steps: [
+      'En Delta abre <strong>"Settings/Sync data"</strong>.',
+      'Selecciona <strong>"Sync from this device"</strong>.',
+      'Escanea el código.'
+    ]
+  },
+  blockfolio: {
+    title: 'Importar desde Blockfolio',
+    pastePlaceholder: 'También puedes pegar el token aquí.',
+
+    steps: [
+      'En Blockfolio, ve a <strong>"Settings"</strong>.',
+      'Al final selecciona <strong>"Token"</strong>.',
+      'En tu teléfono ve a <span class="link">getdiamond.io/<strong>{code}</strong></span>',
+      'Pega el token.'
+    ]
   }
 }
