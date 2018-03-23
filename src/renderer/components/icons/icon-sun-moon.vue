@@ -53,7 +53,7 @@ export default {
 
 <style lang="scss" scoped>
 svg {
-  width: .92rem;
+  width: 1rem;
   --color: var(--c-darkest-stormcloud, #333);
   --color-light: var(--c-almost-white, #fff);
   --stroke-width: 8;

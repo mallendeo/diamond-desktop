@@ -1,14 +1,9 @@
 <template>
   <app-card>
     <div class="content">
-      <h1>
-        <router-link to="/">{{ $t('init.home') }}</router-link>
-        <span> / {{ $t('init.title') }}</span>
-      </h1>
-
-      <p class="mt-4" v-html="$t('init.welcome')"></p>
-      <p class="mt-4 fs-7" v-html="$t('init.gettingStarted')"></p>
-      <p class="mt-2 fs-7" v-html="$t('init.info')"></p>
+      <p class="mt-2 fs-5 title" v-html="$t('init.welcome')"></p>
+      <p class="mt-4 fs-6" v-html="$t('init.gettingStarted')"></p>
+      <p class="mt-3 fs-7 note" v-html="$t('init.info')"></p>
     </div>
 
     <div class="btn-group btn-group--nav">
@@ -18,8 +13,11 @@
       <button class="btn" @click="toggleBlockfolio">
         {{ $t('init.importFrom') }} Blockfolio
       </button>
-      <button class="btn" @click="() => {}">
+      <button class="btn" @click="goToDashboard">
         {{ $t('init.create') }}
+      </button>
+      <button class="btn" @click="$router.go(-1)">
+        {{ $t('ui.goBack') }}
       </button>
     </div>
 
@@ -42,7 +40,14 @@ export default {
     AppCard
   },
   computed: mapState('home', ['showDelta', 'showBlockfolio']),
-  methods: mapActions('home', ['toggleDelta', 'toggleBlockfolio'])
+  methods: {
+    ...mapActions('home', ['toggleDelta', 'toggleBlockfolio']),
+    ...mapActions('settings', ['initDone']),
+    async goToDashboard () {
+      await this.initDone()
+      this.$router.push('home/create')
+    }
+  }
 }
 </script>
 
@@ -52,7 +57,17 @@ export default {
 .content {
   transition: all .2s ease;
   padding: 2rem;
+  line-height: 1.4;
   color: var(--text-color-opaque);
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+
+.note {
+  opacity: .75;
 }
 
 h1 {

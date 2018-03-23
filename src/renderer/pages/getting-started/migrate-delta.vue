@@ -10,10 +10,12 @@
       <template v-if="!synced">
         <h1 class="title mt-5 mb-5 fs-5">{{ $t('delta.title') }}</h1>
         <ol type="1" class="list list--ordered fs-7">
-          <li class="list__item" v-html="$t('delta.step1')" />
-          <li class="list__item" v-html="$t('delta.step2')" />
-          <li class="list__item" v-html="$t('delta.step3')" />
-          <li class="list__item" v-html="$t('delta.step4')" />
+          <li
+            class="list__item"
+            v-for="(step, i) of $t('delta.steps')"
+            v-html="step"
+            :key="`delta-step-${i}`"
+          />
         </ol>
 
         <qrcode

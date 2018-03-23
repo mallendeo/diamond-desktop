@@ -8,15 +8,17 @@
 
     <h1 class="title mt-5 mb-5 fs-5">{{ $t('blockfolio.title') }}</h1>
     <ol type="1" class="list list--ordered fs-7">
-      <li class="list__item" v-html="$t('blockfolio.step1')" />
-      <li class="list__item" v-html="$t('blockfolio.step2')" />
-      <li class="list__item" v-html="$t('blockfolio.step3', { code: 384752 })" /><!-- FIX ME! -->
-      <li class="list__item" v-html="$t('blockfolio.step4')" />
+      <li
+        class="list__item"
+        v-for="(step, i) of $t('blockfolio.steps')"
+        v-html="$t(`blockfolio.steps[${i}]`, { code: 384752 })"
+        :key="`blockfolio-step-${i}`"
+      />
     </ol>
 
-    <div :class="{ 'v-hidden': !showInput }" class="form-group">
+    <div class="form-group">
       <input
-        placeholder="Paste your Blockfolio token"
+        :placeholder="$t('blockfolio.pastePlaceholder')"
         class="form-control"
         v-model="newToken"
         type="text"
@@ -28,14 +30,6 @@
         </svg>
       </button>
     </div>
-
-    <span
-      :class="{ 'v-hidden': showInput }"
-      class="bottom-action mb-8 fs-7"
-      @click="showInput = true"
-    >
-      {{ $t('blockfolio.paste') }}
-    </span>
 
     <button class="btn btn--to-bottom fs-7" @click="toggleBlockfolio">
       {{ $t('ui.goBack') }}
@@ -57,8 +51,7 @@ export default {
   data () {
     return {
       newToken: null,
-      loading: false,
-      showInput: false
+      loading: false
     }
   },
   computed: {
@@ -80,6 +73,17 @@ export default {
 .float-panel { color: var(--text-color-light); }
 
 .bottom-action { cursor: pointer; }
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+
+  > * {
+    position: absolute;
+  }
+}
 
 .btn-group {
   align-self: stretch;
