@@ -25,6 +25,7 @@ function createWindow () {
     minHeight: 590,
     minWidth: 380,
     useContentSize: true,
+    backgroundColor: '#222938',
     titleBarStyle: 'hiddenInset',
     frame: false,
     // vibrancy: 'light',
